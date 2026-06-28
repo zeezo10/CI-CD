@@ -1,0 +1,29 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main  # سيعمل النشر التلقائي فقط عند الدفع لفرع main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. سحب الكود داخل سيرفرات جيتهاب المؤقتة لضمان وجوده
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. الاتصال بالـ VPS وتشغيل أوامر التحديث
+      - name: Executing remote SSH commands to deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            cd /home/kadin/app/CIDC-Test/CI-CD
+            git pull origin main
+            npm install --production
+            npm run build
+            pm2 restart all || npm start
