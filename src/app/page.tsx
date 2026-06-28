@@ -5,7 +5,7 @@ export default function Home() {
         1
       </div>
       <div className="subtitle">
-        First
+        First edited 
       </div>
     </div>
   );
