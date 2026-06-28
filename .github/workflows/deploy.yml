@@ -24,6 +24,6 @@ jobs:
           script: |
             cd /home/kadin/app/CIDC-Test/CI-CD
             git pull origin main
-            npm install --production
+            npm install
             npm run build
-            pm2 restart all || npm start
+            pm2 startOrReload ecosystem.config.js --update-env
