@@ -1,11 +1,18 @@
+// CHANGE THIS COLOR VALUE TO TEST CI/CD (e.g., "#10b981" for green, "#ef4444" for red, etc.)
+const BALL_COLOR = "#eaff00ff";
+
 export default function Home() {
   return (
-    <div className="container">
-      <div className="number-card">
-        1 0000 0000
+    <div 
+      className="container" 
+      style={{ "--ball-primary-color": BALL_COLOR } as React.CSSProperties}
+    >
+      <div className="scene">
+        <div className="ball"></div>
+        <div className="shadow"></div>
       </div>
       <div className="subtitle">
-        First edited 
+        Bouncing Ball
       </div>
     </div>
   );
