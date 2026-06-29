@@ -1,5 +1,5 @@
 // CHANGE THIS COLOR VALUE TO TEST CI/CD (e.g., "#10b981" for green, "#ef4444" for red, etc.)
-const BALL_COLOR = "#ff0000ff";
+const BALL_COLOR = "#001affff";
 
 export default function Home() {
   return (
