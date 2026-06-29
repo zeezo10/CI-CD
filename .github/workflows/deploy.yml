@@ -26,8 +26,15 @@ jobs:
             git pull origin main
             npm install
             
-            # Memasukkan perintah export ke dalam proses build dan PM2
+            # 1. Buat file .env secara fisik di server
+            echo "NEXT_PUBLIC_APP_MESSAGE=${{ secrets.NEXT_PUBLIC_APP_MESSAGE }}" > .env
+            
+            # 2. Export juga ke dalam sesi terminal aktif saat build
             export NEXT_PUBLIC_APP_MESSAGE="${{ secrets.NEXT_PUBLIC_APP_MESSAGE }}"
             
+            # 3. Jalankan build dengan env yang sudah dipastikan ada
             npm run build
+            
+            # 4. Hapus cache PM2 lama dan jalankan ulang aplikasinya
+            pm2 delete all || true
             pm2 startOrReload ecosystem.config.js --update-env
