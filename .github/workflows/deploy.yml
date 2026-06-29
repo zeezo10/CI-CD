@@ -25,5 +25,9 @@ jobs:
             cd /home/kadin/app/CIDC-Test/CI-CD
             git pull origin main
             npm install
+            
+            # Memasukkan perintah export ke dalam proses build dan PM2
+            export NEXT_PUBLIC_APP_MESSAGE="${{ secrets.NEXT_PUBLIC_APP_MESSAGE }}"
+            
             npm run build
             pm2 startOrReload ecosystem.config.js --update-env

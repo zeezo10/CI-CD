@@ -12,7 +12,7 @@ export default function Home() {
         <div className="shadow"></div>
       </div>
       <div className="subtitle">
-        Bouncing Ball
+        {process.env.NEXT_PUBLIC_APP_MESSAGE || "Bouncing Ball"}
       </div>
     </div>
   );
